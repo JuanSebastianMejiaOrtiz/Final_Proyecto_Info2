@@ -15,6 +15,12 @@ public:
     void Scale_sprite(float scale);
     void Show_Sprite(bool appear);
 
+    //Set and Get Methods
+    void Set_Width_Sprite(int width);
+    int Get_Width_Sprite();
+    void Set_Height_Sprite(int height);
+    int Get_Height_Sprite();
+
     QPixmap *full, *actual;
 protected:
     int *width_sprite;

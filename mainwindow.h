@@ -4,6 +4,9 @@
 
 #include <QMainWindow>
 
+#include "start_menu.h"
+#include "game.h"
+#include "game_over.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -21,6 +24,14 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    //Start Menu
+    Start_menu menu_start;
+    //Game Over Menu
+    Game_over menu_over;
+    //Main Game Screen
+    game juego;
+
 };
 
 #endif // MAINWINDOW_H
