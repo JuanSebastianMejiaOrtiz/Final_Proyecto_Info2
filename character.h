@@ -38,23 +38,21 @@ protected:
     int *Pos_x; //Character position in x
     int *Pos_y; //Character position in y
     char *direction; //u:up, d:down, r:right, l:left, n:none
+    int Movement_Speed; //Pixels per cycle
 
     //Other
     bool *isAlive; //0:Dead, 1:Alive
     short id;
 
-    //Position Variables
-    int Movement_Speed; //Pixels per cycle
-
     //Animation Variables
-    //Walk Animation
+        //Walk Animation
     short Walk_Animation_Speed; //1000: 1 second
     short Walk_Animation_Actual_Frame;
         //Dead_Animation
     int Dead_Actual_Frame;
 
     //Timers Animations
-    //Walk
+        //Walk
     QTimer *timer;
         //Dead
     QTimer Dead_Timer;

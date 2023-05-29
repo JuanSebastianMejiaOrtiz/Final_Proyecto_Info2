@@ -4,9 +4,11 @@
 
 #include "control_sprite.h"
 #include "object.h"
+#include "global_macros.h"
 
 class Police : protected control_sprite
 {
+    Q_OBJECT
 public:
     Police();
     ~Police();
@@ -15,9 +17,9 @@ public:
     void Idle_Animation();
     void Stop_Animation();
 protected:
-    Object *Cosa1;
-    Object *Cosa2;
-    Object *Cosa3;
+    Object *Cosas[enemy_Cantidad_Cosas];
+    QTimer *timer;
+
 };
 
 #endif // POLICE_H

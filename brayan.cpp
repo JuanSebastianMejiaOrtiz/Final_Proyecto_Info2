@@ -52,18 +52,6 @@ void Brayan::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void Brayan::keyReleaseEvent(QKeyEvent *event)
-{
-    if (Get_isAlive()){
-        if (event->key() == Qt::Key_W){
-            Set_Direction('n');
-        }
-        else if (event->key() == Qt::Key_S){
-            Set_Direction('n');
-        }
-    }
-}
-
 
 //Movement
 void Brayan::Move()

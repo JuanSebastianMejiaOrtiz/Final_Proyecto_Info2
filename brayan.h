@@ -15,7 +15,6 @@ public:
 
     //Inputs
     void keyPressEvent(QKeyEvent *event);
-    void keyReleaseEvent(QKeyEvent *event);
 
     void Move();
 

@@ -22,15 +22,13 @@
 #define pos_y_initial_mc 100
 
 
-//CAMBIAR
 //Enemy
-//Position
+    //Position
 #define enemy_posx_block_initial 8
 #define enemy_posy_block_initial 1
-#define enemy_Speed 10
-//Animation
+    //Animation
 #define enemy_Walk_Animation_Speed 200
-#define enemy_Dead_Animation_Speed 300
-#define enemy_change_direction 5000
+    //Other
+#define enemy_Cantidad_Cosas 2
 
 #endif // GLOBAL_MACROS_H
