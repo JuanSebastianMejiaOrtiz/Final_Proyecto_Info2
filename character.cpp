@@ -70,3 +70,13 @@ bool Character::Get_isAlive()
 {
     return *isAlive;
 }
+
+void Character::Set_ID(short nID)
+{
+    id = nID;
+}
+
+short Character::Get_ID()
+{
+    return id;
+}

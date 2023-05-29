@@ -2,6 +2,8 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <QGraphicsScene>
+
 #include "global_macros.h"
 //Esenciales
 #include "brayan.h"
@@ -12,7 +14,7 @@
 #include "background.h"
 #include "cinematic.h"
 
-class game
+class game : public QGraphicsScene
 {
 public:
     game();
@@ -20,17 +22,18 @@ public:
 
     void Verify_Collisions();
 
+    void keyPressEvent(QKeyEvent *event);
+
 protected:
-    Brayan MC;
-    Police policia;
+    Brayan *MC; //Brayan, Main Character
+    Police *policia; //Police, Enemy
+    points *puntaje; //Puntos
 
 private:
-    points puntaje;
-
     //Complementos
-    background fondo;
-    music musica;
-    Cinematic initial_cinematic;
+    background *fondo; //Background
+    music *musica; //Musica y SFX
+    Cinematic *initial_cinematic; //Cinematica inicial
 };
 
 #endif // GAME_H

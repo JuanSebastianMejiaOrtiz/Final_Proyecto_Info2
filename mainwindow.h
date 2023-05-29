@@ -25,12 +25,14 @@ public:
 private:
     Ui::MainWindow *ui;
 
+    bool playing;
+
     //Start Menu
-    Start_menu menu_start;
+    Start_menu *menu_start;
     //Game Over Menu
-    Game_over menu_over;
+    Game_over *menu_over;
     //Main Game Screen
-    game juego;
+    game *juego;
 
 };
 

@@ -30,6 +30,9 @@ public:
     void Set_isAlive(bool VoF);
     bool Get_isAlive();
 
+    void Set_ID(short nID);
+    short Get_ID();
+
 protected:
     //Position Variables
     int *Pos_x; //Character position in x
@@ -38,6 +41,7 @@ protected:
 
     //Other
     bool *isAlive; //0:Dead, 1:Alive
+    short id;
 
     //Position Variables
     int Movement_Speed; //Pixels per cycle

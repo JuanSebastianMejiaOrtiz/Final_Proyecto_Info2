@@ -7,27 +7,28 @@ Brayan::Brayan() : Character(pos_x_initial_mc, pos_y_initial_mc)
 
     //Set Default Values
     Dead_Actual_Frame = 0;
+    Set_Direction('n');
 
     //Obtain QPixmap full
     QPixmap imagen;
-    imagen.load("Path/to/mainchar.jpg"); //Cambiar
-    *full = imagen.copy(0, 0, ancho_mainchar*number_cols_mc, alto_mainchar*number_lines_mc); //Revisar
+    imagen.load("://Resources/Main_Char/MC_De_Prueba.png");
+    *full = imagen.copy(0, 0, ancho_mainchar*number_cols_mc, alto_mainchar*number_lines_mc);
 
     //Animation
-    Walk_Animation_Speed = _Walk_Animation_Speed_mc; //Revisar
+    Walk_Animation_Speed = _Walk_Animation_Speed_mc;
     Walk_Animation_Actual_Frame = 0;
 
     //Connect for all signals
-        //Connect and Start Timer
+    //Connect and Start Timer
     connect(timer, SIGNAL(timeout()), this, SLOT(Walk_Animation()));
         //Connect and Start Dead_Timer
     connect(&Dead_Timer, SIGNAL(timeout()), this, SLOT(Dead_Animation()));
 
     //Start timers
-        //Walk Animation
-    timer->start(Walk_Animation_Speed); //Revisar
+    //Walk Animation
+    timer->start(Walk_Animation_Speed);
         //Dead Animation
-    Dead_Timer.start(Dead_Animation_Speed_mc); //Revisar
+    Dead_Timer.start(Dead_Animation_Speed_mc);
 }
 
 Brayan::~Brayan()
@@ -47,13 +48,18 @@ void Brayan::keyPressEvent(QKeyEvent *event)
             Set_Direction('d');
             Move();
         }
-        else if (event->key() == Qt::Key_A){
-            Set_Direction('l');
-            Move();
+        else Set_Direction('n');
+    }
+}
+
+void Brayan::keyReleaseEvent(QKeyEvent *event)
+{
+    if (Get_isAlive()){
+        if (event->key() == Qt::Key_W){
+            Set_Direction('n');
         }
-        else if (event->key() == Qt::Key_D){
-            Set_Direction('r');
-            Move();
+        else if (event->key() == Qt::Key_S){
+            Set_Direction('n');
         }
     }
 }
@@ -67,7 +73,7 @@ void Brayan::Move()
     Walk_Animation();
 }
 
-    //Change Position
+//Change Position
 void Brayan::Movement()
 {
     if (Get_Direction() == 'u'){
@@ -80,17 +86,32 @@ void Brayan::Movement()
     setPos(QPointF(*Pos_x, *Pos_y));
 }
 
+
 //Animations
-void Brayan::Walk_Up_Animation()
+void Brayan::Idle_Animation()
 {
     if (Walk_Animation_Actual_Frame < Walk_Animation_Frame_Ammount_mc){
-        Select_sprite( (Walk_Animation_Frame_Ammount_mc+Walk_Animation_Actual_Frame), 1);
+        Select_sprite(Walk_Animation_Actual_Frame, 0);
         Scale_sprite(Scale_Characters);
         Show_Sprite(1);
         Walk_Animation_Actual_Frame++;
     }
     else{
-        //timer->stop();
+        Walk_Animation_Actual_Frame = 0;
+    }
+}
+
+    //Movement
+void Brayan::Walk_Up_Animation()
+{
+    if (Walk_Animation_Actual_Frame < Walk_Animation_Frame_Ammount_mc){
+        int frame = Idle_Animation_Frame_Ammount_mc + Walk_Animation_Frame_Ammount_mc;
+        Select_sprite( (frame + Walk_Animation_Actual_Frame), 0);
+        Scale_sprite(Scale_Characters);
+        Show_Sprite(1);
+        Walk_Animation_Actual_Frame++;
+    }
+    else{
         Walk_Animation_Actual_Frame = 0;
     }
 }
@@ -98,35 +119,34 @@ void Brayan::Walk_Up_Animation()
 void Brayan::Walk_Down_Animation()
 {
     if (Walk_Animation_Actual_Frame < Walk_Animation_Frame_Ammount_mc){
-        Select_sprite( (Walk_Animation_Frame_Ammount_mc+Walk_Animation_Actual_Frame), 0);
+        Select_sprite( (Idle_Animation_Frame_Ammount_mc + Walk_Animation_Actual_Frame), 0);
         Scale_sprite(Scale_Characters);
         Show_Sprite(1);
         Walk_Animation_Actual_Frame++;
     }
     else{
-        timer->stop();
         Walk_Animation_Actual_Frame = 0;
     }
 }
 
+    //Dead
 void Brayan::Dead(){
     if (Dead_Actual_Frame < Dead_Animation_Frame_Ammount_mc){
-        Select_sprite(Dead_Actual_Frame, 2);
+        Select_sprite(Dead_Actual_Frame, 1);
         Scale_sprite(Scale);
         Show_Sprite(1);
         Dead_Actual_Frame++;
-     }
-     else if (Dead_Actual_Frame == Dead_Animation_Frame_Ammount_mc){
+    }
+    else if (Dead_Actual_Frame == Dead_Animation_Frame_Ammount_mc){
         Dead_Timer.stop();
         Dead_Actual_Frame = 0;
-        Show_Sprite(0);
     }
 }
 
 
 //SLOTS
-    //Animations
-        //Movement
+//Animations
+    //Movement
 void Brayan::Walk_Animation()
 {
     if (Get_Direction() == 'u'){
@@ -140,7 +160,7 @@ void Brayan::Walk_Animation()
     }
 }
 
-        //Dead
+    //Dead
 void Brayan::Dead_Animation()
 {
     if (!Get_isAlive()){
