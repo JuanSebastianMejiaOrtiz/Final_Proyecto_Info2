@@ -19,6 +19,8 @@ Police::Police()
 
     //Load Image
     QPixmap img;
+    img.load("://Resources/Enemy/Enemy_Proyecto_Final_Pruebas.png");
+    *full = img.copy();
 
     //Connect for all signals
         //timer for animations
@@ -26,9 +28,13 @@ Police::Police()
     connect(Throw_timer, SIGNAL(timeout()), this, SLOT(Throwing()));
     connect(end_timer, SIGNAL(timeout()), this, SLOT(Game_Over_Stop()));
 
+    //Set Pos
+    setPos(enemy_pos_x_initial, enemy_pos_y_initial);
+
     //Start timers
     timer->start(Enemy_Animation_Speed);
     Throw_timer->start(Enemy_Throw_Animation_Speed);
+
 }
 
 Police::~Police()
@@ -41,10 +47,8 @@ Police::~Police()
 
 void Police::Throw_Animation()
 {
-    if (Enemy_Animation_Actual_Frame < enemy_Stop_Animation_Frame_Ammount){
-        int frame = Enemy_Animation_Actual_Frame + enemy_Walk_Animation_Frame_Ammount;
-        frame += enemy_Idle_Animation_Frame_Ammount;
-
+    if (Enemy_Animation_Actual_Frame < enemy_Throw_Animation_Frame_Ammount){
+        int frame = Enemy_Animation_Actual_Frame + enemy_Idle_Animation_Frame_Ammount;
         Select_sprite(frame, 0);
         Scale_sprite(Scale);
         Show_Sprite(true);
@@ -58,7 +62,7 @@ void Police::Throw_Animation()
 
 void Police::Idle_Animation()
 {
-    if (Enemy_Animation_Actual_Frame < enemy_Stop_Animation_Frame_Ammount){
+    if (Enemy_Animation_Actual_Frame < enemy_Idle_Animation_Frame_Ammount){
         Select_sprite(Enemy_Animation_Actual_Frame, 0);
         Scale_sprite(Scale);
         Show_Sprite(true);

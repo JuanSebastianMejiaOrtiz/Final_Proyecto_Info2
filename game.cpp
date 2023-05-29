@@ -7,10 +7,10 @@ game::game()
     MC = new Brayan;
     policia = new Police;
 
-    MC->Select_sprite(0, 0);
-    MC->Scale_sprite(Scale_Characters);
-    MC->Show_Sprite(true);
-    addItem(MC);
+    //Set on Scene
+    Set_MC(MC);
+    Set_Enemy(policia);
+
 }
 
 game::~game()
@@ -26,4 +26,20 @@ game::~game()
 void game::keyPressEvent(QKeyEvent *event)
 {
     MC->keyPressEvent(event);
+}
+
+void game::Set_MC(Brayan *mc)
+{
+    mc->Select_sprite(0, 0);
+    mc->Scale_sprite(Scale_Characters);
+    mc->Show_Sprite(true);
+    addItem(mc);
+}
+
+void game::Set_Enemy(Police *enemy)
+{
+    enemy->Select_sprite(0, 0);
+    enemy->Scale_sprite(Scale_Characters);
+    enemy->Show_Sprite(true);
+    addItem(enemy);
 }

@@ -17,17 +17,13 @@
 
 
 //Enemy
-    //Position
-#define enemy_pos_x_initial 60
-#define enemy_pos_y_initial 60
+    //Medidas
+#define enemy_ancho 16
+#define enemy_alto 16
     //Animation
 #define enemy_Idle_Animation_Frame_Ammount 3
-#define enemy_Walk_Animation_Frame_Ammount 3
 #define enemy_Throw_Animation_Frame_Ammount 3
 #define enemy_Stop_Animation_Frame_Ammount 3
-    //Medidas
-#define enemy_ancho 100
-#define enemy_alto 100
 
 
 #endif // MACROS_VITALES_H

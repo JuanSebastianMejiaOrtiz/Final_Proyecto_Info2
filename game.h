@@ -30,10 +30,14 @@ protected:
     points *puntaje; //Puntos
 
 private:
-    //Complementos
+    //Atributos Complementos
     background *fondo; //Background
     music *musica; //Musica y SFX
     Cinematic *initial_cinematic; //Cinematica inicial
+
+    //Metodos
+    void Set_MC(Brayan *mc);
+    void Set_Enemy(Police *enemy);
 };
 
 #endif // GAME_H

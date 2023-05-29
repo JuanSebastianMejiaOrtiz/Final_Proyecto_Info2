@@ -6,7 +6,7 @@
 #include "object.h"
 #include "global_macros.h"
 
-class Police : protected control_sprite
+class Police : public control_sprite
 {
     Q_OBJECT
 public:
