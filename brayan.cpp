@@ -81,7 +81,7 @@ void Brayan::Idle_Animation()
     if (Walk_Animation_Actual_Frame < Walk_Animation_Frame_Ammount_mc){
         Select_sprite(Walk_Animation_Actual_Frame, 0);
         Scale_sprite(Scale_Characters);
-        Show_Sprite(1);
+        Show_Sprite(true);
         Walk_Animation_Actual_Frame++;
     }
     else{
@@ -96,7 +96,7 @@ void Brayan::Walk_Up_Animation()
         int frame = Idle_Animation_Frame_Ammount_mc + Walk_Animation_Frame_Ammount_mc;
         Select_sprite( (frame + Walk_Animation_Actual_Frame), 0);
         Scale_sprite(Scale_Characters);
-        Show_Sprite(1);
+        Show_Sprite(true);
         Walk_Animation_Actual_Frame++;
     }
     else{
@@ -109,7 +109,7 @@ void Brayan::Walk_Down_Animation()
     if (Walk_Animation_Actual_Frame < Walk_Animation_Frame_Ammount_mc){
         Select_sprite( (Idle_Animation_Frame_Ammount_mc + Walk_Animation_Actual_Frame), 0);
         Scale_sprite(Scale_Characters);
-        Show_Sprite(1);
+        Show_Sprite(true);
         Walk_Animation_Actual_Frame++;
     }
     else{

@@ -5,6 +5,7 @@ game::game()
 {
     //Assign Memory for Attributes
     MC = new Brayan;
+    policia = new Police;
 
     MC->Select_sprite(0, 0);
     MC->Scale_sprite(Scale_Characters);
