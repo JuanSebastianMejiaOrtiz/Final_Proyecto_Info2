@@ -4,7 +4,6 @@
 
 #include "control_sprite.h"
 
-
 class background : public control_sprite
 {
 public:
@@ -12,8 +11,10 @@ public:
 
     void Start_moving();
     void Stop_moving();
+
 private:
     int actual_frame;
+
 };
 
 #endif // BACKGROUND_H
