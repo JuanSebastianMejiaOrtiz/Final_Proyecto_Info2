@@ -12,6 +12,7 @@ public:
     void Launched_Animation();
 protected:
     QTimer *time;
+    QPointF *Go_to;
 };
 
 #endif // OBJECT_H

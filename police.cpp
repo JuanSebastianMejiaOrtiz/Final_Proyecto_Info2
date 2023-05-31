@@ -14,8 +14,9 @@ Police::Police()
     //Set Default Values
     launch = false;
     Enemy_Animation_Actual_Frame = 0;
+    Enemy_Throw_Frecuency = enemy_Throw_Frecuency;
     Enemy_Throw_Animation_Speed = enemy_Throw_Animation_Speed;
-    Enemy_Animation_Speed = enemy_Walk_Animation_Speed;
+    Enemy_Walk_Animation_Speed = enemy_Walk_Animation_Speed;
 
     //Load Image
     QPixmap img;
@@ -32,8 +33,8 @@ Police::Police()
     setPos(enemy_pos_x_initial, enemy_pos_y_initial);
 
     //Start timers
-    timer->start(Enemy_Animation_Speed);
-    Throw_timer->start(Enemy_Throw_Animation_Speed);
+    timer->start(Enemy_Walk_Animation_Speed);
+    Throw_timer->start(Enemy_Throw_Frecuency);
 
 }
 
@@ -47,7 +48,7 @@ Police::~Police()
 
 void Police::Throw_Animation()
 {
-    if (Enemy_Animation_Actual_Frame < enemy_Throw_Animation_Frame_Ammount){
+    if (Get_Enemy_Animation_Actual_Frame() < enemy_Throw_Animation_Frame_Ammount){
         int frame = Enemy_Animation_Actual_Frame + enemy_Idle_Animation_Frame_Ammount;
         Select_sprite(frame, 0);
         Scale_sprite(Scale);
@@ -57,12 +58,13 @@ void Police::Throw_Animation()
     else{
         Enemy_Animation_Actual_Frame = 0;
         launch = false;
+        timer->start(Enemy_Walk_Animation_Speed);
     }
 }
 
 void Police::Idle_Animation()
 {
-    if (Enemy_Animation_Actual_Frame < enemy_Idle_Animation_Frame_Ammount){
+    if (Get_Enemy_Animation_Actual_Frame() < enemy_Idle_Animation_Frame_Ammount){
         Select_sprite(Enemy_Animation_Actual_Frame, 0);
         Scale_sprite(Scale);
         Show_Sprite(true);
@@ -75,7 +77,7 @@ void Police::Idle_Animation()
 
 void Police::Stop_Animation()
 {
-    if (Enemy_Animation_Actual_Frame < enemy_Stop_Animation_Frame_Ammount){
+    if (Get_Enemy_Animation_Actual_Frame() < enemy_Stop_Animation_Frame_Ammount){
         Select_sprite(Enemy_Animation_Actual_Frame, 1);
         Scale_sprite(Scale);
         Show_Sprite(true);
@@ -89,9 +91,10 @@ void Police::Stop_Animation()
 
 void Police::Animation_Idle()
 {
-    if (!launch){
+    if (!is_Launched()){
         Idle_Animation();
     }
+    else Throw_Animation();
 }
 
 void Police::Game_Over_Stop()
@@ -101,8 +104,18 @@ void Police::Game_Over_Stop()
 
 void Police::Throwing()
 {
-    if (launch){
-        Throw_Animation();
-    }
+    launch = !launch;
+    Enemy_Animation_Actual_Frame = 0;
+    timer->start(Enemy_Throw_Animation_Speed);
 }
 
+//Set and Get Methods
+int Police::Get_Enemy_Animation_Actual_Frame()
+{
+    return Enemy_Animation_Actual_Frame;
+}
+
+bool Police::is_Launched()
+{
+    return launch;
+}

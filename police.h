@@ -17,6 +17,9 @@ public:
     void Idle_Animation();
     void Stop_Animation();
 
+    int Get_Enemy_Animation_Actual_Frame();
+    bool is_Launched();
+
 protected:
     bool launch;
 
@@ -31,7 +34,9 @@ protected:
 
 private:
     int Enemy_Animation_Actual_Frame;
-    int Enemy_Animation_Speed;
+
+    int Enemy_Walk_Animation_Speed;
+    int Enemy_Throw_Frecuency;
     int Enemy_Throw_Animation_Speed;
 
 private slots:

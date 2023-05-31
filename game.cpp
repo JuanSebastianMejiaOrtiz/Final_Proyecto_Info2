@@ -11,6 +11,8 @@ game::game()
     Set_MC(MC);
     Set_Enemy(policia);
 
+    //Connect Signals
+
 }
 
 game::~game()
