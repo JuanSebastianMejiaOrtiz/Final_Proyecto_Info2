@@ -25,7 +25,7 @@ Brayan::Brayan() : Character(pos_x_initial_mc, pos_y_initial_mc)
     connect(&Dead_Timer, SIGNAL(timeout()), this, SLOT(Dead_Animation()));
 
     //Start timers
-    //Walk Animation
+        //Walk Animation
     timer->start(Walk_Animation_Speed);
         //Dead Animation
     Dead_Timer.start(Dead_Animation_Speed_mc);
@@ -121,7 +121,7 @@ void Brayan::Walk_Down_Animation()
 void Brayan::Dead(){
     if (Dead_Actual_Frame < Dead_Animation_Frame_Ammount_mc){
         Select_sprite(Dead_Actual_Frame, 1);
-        Scale_sprite(Scale);
+        Scale_sprite(Scale_Characters);
         Show_Sprite(1);
         Dead_Actual_Frame++;
     }

@@ -12,7 +12,7 @@ game::game()
     Set_Enemy(policia);
 
     //Connect Signals
-
+    connect(policia, SIGNAL(Para_Donde(Object*)), this, SLOT(Set_Para_Donde(Object*)));
 }
 
 game::~game()
@@ -44,4 +44,10 @@ void game::Set_Enemy(Police *enemy)
     enemy->Scale_sprite(Scale_Characters);
     enemy->Show_Sprite(true);
     addItem(enemy);
+    addItem(enemy->Cosa);
+}
+
+void game::Set_Para_Donde(Object *Cosa)
+{
+    Cosa->SetID(MC->Get_ID());
 }

@@ -20,10 +20,11 @@ public:
     int Get_Enemy_Animation_Actual_Frame();
     bool is_Launched();
 
+    //Object *Cosas[enemy_Cantidad_Cosas];
+    Object *Cosa;
+
 protected:
     bool launch;
-
-    Object *Cosas[enemy_Cantidad_Cosas];
 
     //Timers
         //Throw
@@ -39,10 +40,15 @@ private:
     int Enemy_Throw_Frecuency;
     int Enemy_Throw_Animation_Speed;
 
+    void Move_Object(int frame_actual);
+
 private slots:
     void Animation_Idle();
     void Game_Over_Stop();
     void Throwing();
+
+signals:
+    void Para_Donde(Object *Objeto);
 
 };
 

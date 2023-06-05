@@ -16,6 +16,7 @@
 
 class game : public QGraphicsScene
 {
+    Q_OBJECT
 public:
     game();
     ~game();
@@ -38,6 +39,9 @@ private:
     //Metodos
     void Set_MC(Brayan *mc);
     void Set_Enemy(Police *enemy);
+
+private slots:
+    void Set_Para_Donde(Object *Cosa);
 };
 
 #endif // GAME_H

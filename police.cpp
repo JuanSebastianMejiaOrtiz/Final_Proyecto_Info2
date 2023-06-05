@@ -7,9 +7,10 @@ Police::Police()
     timer = new QTimer;
     end_timer = new QTimer;
     Throw_timer = new QTimer;
-    for (short i = 0; i < enemy_Cantidad_Cosas; i++){
-        Cosas[i] = new Object;
-    }
+    Cosa = new Object;
+//    for (short i = 0; i < enemy_Cantidad_Cosas; i++){
+//        Cosas[i] = new Object;
+//    }
 
     //Set Default Values
     launch = false;
@@ -41,17 +42,19 @@ Police::Police()
 Police::~Police()
 {
     delete timer;
-    for (short i = 0; i < enemy_Cantidad_Cosas; i++){
-        delete Cosas[i];
-    }
+    delete Cosa;
+//    for (short i = 0; i < enemy_Cantidad_Cosas; i++){
+//        delete Cosas[i];
+//    }
 }
 
 void Police::Throw_Animation()
 {
     if (Get_Enemy_Animation_Actual_Frame() < enemy_Throw_Animation_Frame_Ammount){
+        Move_Object(Get_Enemy_Animation_Actual_Frame());
         int frame = Enemy_Animation_Actual_Frame + enemy_Idle_Animation_Frame_Ammount;
         Select_sprite(frame, 0);
-        Scale_sprite(Scale);
+        Scale_sprite(Scale_Characters);
         Show_Sprite(true);
         Enemy_Animation_Actual_Frame++;
     }
@@ -66,7 +69,7 @@ void Police::Idle_Animation()
 {
     if (Get_Enemy_Animation_Actual_Frame() < enemy_Idle_Animation_Frame_Ammount){
         Select_sprite(Enemy_Animation_Actual_Frame, 0);
-        Scale_sprite(Scale);
+        Scale_sprite(Scale_Characters);
         Show_Sprite(true);
         Enemy_Animation_Actual_Frame++;
     }
@@ -79,7 +82,7 @@ void Police::Stop_Animation()
 {
     if (Get_Enemy_Animation_Actual_Frame() < enemy_Stop_Animation_Frame_Ammount){
         Select_sprite(Enemy_Animation_Actual_Frame, 1);
-        Scale_sprite(Scale);
+        Scale_sprite(Scale_Characters);
         Show_Sprite(true);
         Enemy_Animation_Actual_Frame++;
     }
@@ -118,4 +121,18 @@ int Police::Get_Enemy_Animation_Actual_Frame()
 bool Police::is_Launched()
 {
     return launch;
+}
+
+void Police::Move_Object(int frame_actual)
+{
+    if (frame_actual == 0){
+        Cosa->Move_Object(10, 40);
+    }
+    else if (frame_actual == 1){
+        Cosa->Move_Object(50, 20);
+    }
+    else if (frame_actual == 2){
+        Cosa->throwed(1);
+        emit Para_Donde(Cosa);
+    }
 }

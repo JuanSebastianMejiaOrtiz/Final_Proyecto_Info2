@@ -7,6 +7,7 @@
 //General
 #define Scale 5
 #define Scale_Characters (Scale - 0.2)
+#define Scale_Objects (Scale * 0.8)
 #define Check 1
 
 //Main Character (mc)
@@ -31,5 +32,7 @@
     //Other
 #define enemy_Throw_Frecuency 4000
 #define enemy_Cantidad_Cosas 2
+    //Object
+#define object_Periodo_de_Muestreo 50
 
 #endif // GLOBAL_MACROS_H

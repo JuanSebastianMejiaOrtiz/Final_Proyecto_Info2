@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>Resources/Main_Char/MC_De_Prueba.png</file>
         <file>Resources/Enemy/Enemy_Proyecto_Final_Pruebas.png</file>
+        <file>Resources/Objetos/roca.jpeg</file>
     </qresource>
 </RCC>
