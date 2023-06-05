@@ -7,6 +7,7 @@
 
 class Object : public control_sprite
 {
+    Q_OBJECT
 public:
     Object();
 

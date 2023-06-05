@@ -6,8 +6,10 @@ game::game()
     //Assign Memory for Attributes
     MC = new Brayan;
     policia = new Police;
+    fondo = new background;
 
     //Set on Scene
+    Set_Background(fondo);
     Set_MC(MC);
     Set_Enemy(policia);
 
@@ -45,6 +47,11 @@ void game::Set_Enemy(Police *enemy)
     enemy->Show_Sprite(true);
     addItem(enemy);
     addItem(enemy->Cosa);
+}
+
+void game::Set_Background(background *background)
+{
+    addItem(background);
 }
 
 void game::Set_Para_Donde(Object *Cosa)

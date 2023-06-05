@@ -5,9 +5,11 @@
 #include "macros_vitales.h"
 
 //General
-#define Scale 5
-#define Scale_Characters (Scale - 0.2)
-#define Scale_Objects (Scale * 0.8)
+#define Scale_General 5
+#define Scale_Characters (Scale_General - 0.2)
+#define Scale_Objects (Scale_General * 0.8)
+#define Scale_Background_x 3
+#define Scale_Background_y 3.1
 #define Check 1
 
 //Main Character (mc)
@@ -33,6 +35,19 @@
 #define enemy_Throw_Frecuency 4000
 #define enemy_Cantidad_Cosas 2
     //Object
-#define object_Periodo_de_Muestreo 50
+        //Periodo
+#define object_Periodo_de_Muestreo 1
+        //Speed
+#define object_start_vel_x 10 //(30 * Scale_Background_x)
+#define object_start_vel_y 8 //(20 * Scale_Background_y)
+        //Aceleration
+#define object_aceleration_x 1
+#define object_aceleration_y 1
+
+
+//Background
+#define background_timer_speed 20
+#define background_movement_speed_px 20
+#define background_reset_x ((background_width * Scale_Background_x) - (267 * Scale_Background_x))
 
 #endif // GLOBAL_MACROS_H

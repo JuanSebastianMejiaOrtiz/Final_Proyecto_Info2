@@ -51,11 +51,13 @@ Police::~Police()
 void Police::Throw_Animation()
 {
     if (Get_Enemy_Animation_Actual_Frame() < enemy_Throw_Animation_Frame_Ammount){
-        Move_Object(Get_Enemy_Animation_Actual_Frame());
         int frame = Enemy_Animation_Actual_Frame + enemy_Idle_Animation_Frame_Ammount;
         Select_sprite(frame, 0);
         Scale_sprite(Scale_Characters);
         Show_Sprite(true);
+
+        Move_Object(Get_Enemy_Animation_Actual_Frame());
+
         Enemy_Animation_Actual_Frame++;
     }
     else{
@@ -125,14 +127,25 @@ bool Police::is_Launched()
 
 void Police::Move_Object(int frame_actual)
 {
+    float x, y;
     if (frame_actual == 0){
-        Cosa->Move_Object(10, 40);
+        x = 10;
+        y = 40;
+        Cosa->Move_Object(x, y);
     }
     else if (frame_actual == 1){
-        Cosa->Move_Object(50, 20);
+        x = 50;
+        y = 20;
+
+        Cosa->SetVX(object_start_vel_x);
+        Cosa->SetVY(object_start_vel_y);
+        Cosa->SetX(x);
+        Cosa->SetY(y);
+
+        Cosa->Move_Object(Cosa->GetX(), Cosa->GetY());
     }
-    else if (frame_actual == 2){
-        Cosa->throwed(1);
-        emit Para_Donde(Cosa);
-    }
+//    else if (frame_actual == 2){
+//        Cosa->throwed(true);
+//        emit Para_Donde(Cosa);
+//    }
 }

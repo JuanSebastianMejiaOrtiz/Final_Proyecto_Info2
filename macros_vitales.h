@@ -5,6 +5,8 @@
 //  WARNING    Esto puede cambiar el funcionamiento base del juego
 
 //General
+#define Window_Width 800
+#define Window_Height 600
 #define ID_Change_px 100
 
 //Main character
@@ -32,5 +34,10 @@
 //Objects
 #define object_ancho 101
 #define object_alto 70
+
+
+//Background
+#define background_width 3790
+#define background_height 194
 
 #endif // MACROS_VITALES_H

@@ -9,11 +9,14 @@ Object::Object()
     //Set Default Values
     x = 0;
     y = 0;
-    vx = 0;
-    vy = 0;
-    ax = 0;
-    ay = 0;
-    T = 0.2;
+
+    vx = object_start_vel_x;
+    vy = object_start_vel_y;
+
+    ax = object_aceleration_x;
+    ay = object_aceleration_y;
+
+    T = object_Periodo_de_Muestreo;
     f = 1;
 
     //Connect timer
@@ -21,10 +24,10 @@ Object::Object()
 
     //Set Pixmap
     QPixmap img;
-    img.load("://Resources/Objetos/roca.jpeg");
+    img.load("://Resources/Objetos/roca.png");
     *full = img.copy();
     setPos(0, 0);
-    Select_sprite(0,0);
+    Select_sprite(0, 0);
     Scale_sprite(Scale_Objects);
     Show_Sprite(true);
 }
@@ -32,7 +35,7 @@ Object::Object()
 void Object::throwed(bool launched)
 {
     if (launched){
-        timer->start();
+        timer->start(T);
     }
     else{
         timer->stop();
@@ -46,7 +49,7 @@ void Object::Move_Object(int x, int y)
 
 void Object::Launch()
 {
-
+    setPos(x, y);
 }
 
 void Object::Calcular_Fisicas()
@@ -59,7 +62,8 @@ void Object::Calcular_Fisicas()
 
 void Object::Launched()
 {
-
+    Calcular_Fisicas();
+    Launch();
 }
 
 
@@ -72,6 +76,16 @@ QPointF Object::Get_GoTo()
 void Object::Set_GoTo(QPointF Donde)
 {
     *Go_to = Donde;
+}
+
+void Object::SetID(short nid)
+{
+    id = nid;
+}
+
+short Object::GetID()
+{
+    return id;
 }
 
 void Object::SetX(float X)

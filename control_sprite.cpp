@@ -32,6 +32,11 @@ void control_sprite::Scale_sprite(float scale)
     *actual = actual->scaled(actual->width()*scale, actual->height()*scale);
 }
 
+void control_sprite::Scale_sprite(float scale_x, float scale_y)
+{
+    *actual = actual->scaled(actual->width()*scale_x, actual->height()*scale_y);
+}
+
 void control_sprite::Show_Sprite(bool appear)
 {
     if(appear){

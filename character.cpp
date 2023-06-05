@@ -13,7 +13,7 @@ Character::Character(int Start_Point_x, int Start_Point_y)
     //Set Default Values
     *Pos_x = Start_Point_x;
     *Pos_y = Start_Point_y;
-    Movement_Speed = Walk_Speed_mc; //Revisar
+    Movement_Speed = Walk_Speed_mc;
     *isAlive = 1;
 
     //Set Initial Pos
