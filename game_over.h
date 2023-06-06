@@ -4,7 +4,7 @@
 
 #include "control_sprite.h"
 
-class Game_over : protected control_sprite
+class Game_over : public control_sprite
 {
 public:
     Game_over();

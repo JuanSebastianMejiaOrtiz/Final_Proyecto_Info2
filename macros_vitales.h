@@ -23,10 +23,10 @@
 
 //Enemy
     //Medidas
-#define enemy_ancho 16
-#define enemy_alto 16
+#define enemy_ancho 129
+#define enemy_alto 105
     //Animation
-#define enemy_Idle_Animation_Frame_Ammount 3
+#define enemy_Idle_Animation_Frame_Ammount 2
 #define enemy_Throw_Animation_Frame_Ammount 3
 #define enemy_Stop_Animation_Frame_Ammount 3
 

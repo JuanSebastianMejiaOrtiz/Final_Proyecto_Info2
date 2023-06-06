@@ -43,6 +43,10 @@ private:
 
 private slots:
     void Set_Para_Donde(Object *Cosa);
+    void Update_Puntaje(unsigned int puntos);
+
+signals:
+    void UPDATE_POINTS(unsigned int point);
 };
 
 #endif // GAME_H

@@ -10,9 +10,10 @@ Brayan::Brayan() : Character(pos_x_initial_mc, pos_y_initial_mc)
     Set_Direction('n');
 
     //Obtain QPixmap full
-    QPixmap imagen;
-    imagen.load("://Resources/Main_Char/MC_De_Prueba.png");
-    *full = imagen.copy(0, 0, ancho_mainchar*number_cols_mc, alto_mainchar*number_lines_mc);
+    QPixmap imagen("://Resources/Main_Char/MC_De_Prueba.png");
+    *full = imagen.copy();
+    Set_Width_Sprite(ancho_mainchar);
+    Set_Height_Sprite(alto_mainchar);
 
     //Animation
     Walk_Animation_Speed = _Walk_Animation_Speed_mc;

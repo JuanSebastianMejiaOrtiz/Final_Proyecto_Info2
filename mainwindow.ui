@@ -24,6 +24,19 @@
      </rect>
     </property>
    </widget>
+   <widget class="QLabel" name="Puntaje">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Puntaje: </string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

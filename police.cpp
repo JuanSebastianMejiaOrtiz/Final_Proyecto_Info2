@@ -8,9 +8,6 @@ Police::Police()
     end_timer = new QTimer;
     Throw_timer = new QTimer;
     Cosa = new Object;
-//    for (short i = 0; i < enemy_Cantidad_Cosas; i++){
-//        Cosas[i] = new Object;
-//    }
 
     //Set Default Values
     launch = false;
@@ -20,9 +17,10 @@ Police::Police()
     Enemy_Walk_Animation_Speed = enemy_Walk_Animation_Speed;
 
     //Load Image
-    QPixmap img;
-    img.load("://Resources/Enemy/Enemy_Proyecto_Final_Pruebas.png");
+    QPixmap img(":/Resources/Enemy/Sprite_Police_Full.png");
     *full = img.copy();
+    Set_Width_Sprite(enemy_ancho);
+    Set_Height_Sprite(enemy_alto);
 
     //Connect for all signals
         //timer for animations
@@ -32,20 +30,17 @@ Police::Police()
 
     //Set Pos
     setPos(enemy_pos_x_initial, enemy_pos_y_initial);
+    Cosa->setPos(-object_ancho, 0);
 
     //Start timers
     timer->start(Enemy_Walk_Animation_Speed);
     Throw_timer->start(Enemy_Throw_Frecuency);
-
 }
 
 Police::~Police()
 {
     delete timer;
     delete Cosa;
-//    for (short i = 0; i < enemy_Cantidad_Cosas; i++){
-//        delete Cosas[i];
-//    }
 }
 
 void Police::Throw_Animation()
@@ -144,8 +139,8 @@ void Police::Move_Object(int frame_actual)
 
         Cosa->Move_Object(Cosa->GetX(), Cosa->GetY());
     }
-//    else if (frame_actual == 2){
-//        Cosa->throwed(true);
-//        emit Para_Donde(Cosa);
-//    }
+    else if (frame_actual == 2){
+        Cosa->throwed(true);
+        emit Para_Donde(Cosa);
+    }
 }

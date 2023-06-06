@@ -34,6 +34,9 @@ private:
     //Main Game Screen
     game *juego;
 
+private slots:
+    void Update_Puntaje_Label(unsigned int puntaje);
+
 };
 
 #endif // MAINWINDOW_H

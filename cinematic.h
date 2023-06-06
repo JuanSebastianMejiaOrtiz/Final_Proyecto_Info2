@@ -4,7 +4,7 @@
 
 #include "control_sprite.h"
 
-class Cinematic : protected control_sprite
+class Cinematic : public control_sprite
 {
 public:
     Cinematic();

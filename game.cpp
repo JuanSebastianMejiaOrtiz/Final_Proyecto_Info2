@@ -7,6 +7,7 @@ game::game()
     MC = new Brayan;
     policia = new Police;
     fondo = new background;
+    puntaje = new points;
 
     //Set on Scene
     Set_Background(fondo);
@@ -15,6 +16,7 @@ game::game()
 
     //Connect Signals
     connect(policia, SIGNAL(Para_Donde(Object*)), this, SLOT(Set_Para_Donde(Object*)));
+    connect(puntaje, SIGNAL(Update_Points(uint)), this, SLOT(Update_Puntaje(uint)));
 }
 
 game::~game()
@@ -57,4 +59,9 @@ void game::Set_Background(background *background)
 void game::Set_Para_Donde(Object *Cosa)
 {
     Cosa->SetID(MC->Get_ID());
+}
+
+void game::Update_Puntaje(unsigned int puntos)
+{
+    emit UPDATE_POINTS(puntos);
 }
