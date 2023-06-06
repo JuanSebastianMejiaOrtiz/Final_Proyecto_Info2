@@ -57,9 +57,11 @@ void Brayan::keyPressEvent(QKeyEvent *event)
 //Movement
 void Brayan::Move()
 {
-    Movement();
+    if (Get_isAlive()){
+        Movement();
 
-    Walk_Animation();
+        Walk_Animation();
+    }
 }
 
 //Change Position
@@ -95,7 +97,8 @@ void Brayan::Walk_Up_Animation()
 {
     if (Walk_Animation_Actual_Frame < Walk_Animation_Frame_Ammount_mc){
         int frame = Idle_Animation_Frame_Ammount_mc + Walk_Animation_Frame_Ammount_mc;
-        Select_sprite( (frame + Walk_Animation_Actual_Frame), 0);
+        frame += Walk_Animation_Actual_Frame;
+        Select_sprite(frame, 0);
         Scale_sprite(Scale_Characters);
         Show_Sprite(true);
         Walk_Animation_Actual_Frame++;
@@ -108,7 +111,8 @@ void Brayan::Walk_Up_Animation()
 void Brayan::Walk_Down_Animation()
 {
     if (Walk_Animation_Actual_Frame < Walk_Animation_Frame_Ammount_mc){
-        Select_sprite( (Idle_Animation_Frame_Ammount_mc + Walk_Animation_Actual_Frame), 0);
+        int frame = Idle_Animation_Frame_Ammount_mc + Walk_Animation_Actual_Frame;
+        Select_sprite(frame, 0);
         Scale_sprite(Scale_Characters);
         Show_Sprite(true);
         Walk_Animation_Actual_Frame++;
@@ -139,10 +143,12 @@ void Brayan::Dead(){
 void Brayan::Walk_Animation()
 {
     if (Get_Direction() == 'u'){
-        Walk_Up_Animation();
+        //Walk_Up_Animation();
+        Idle_Animation();
     }
     else if (Get_Direction() == 'd'){
-        Walk_Down_Animation();
+        //Walk_Down_Animation();
+        Idle_Animation();
     }
     else if (Get_Direction() == 'n'){
         Idle_Animation();
