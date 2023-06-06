@@ -14,12 +14,12 @@
 
 //Main Character (mc)
     //Posicion
-#define pos_x_initial_mc 600
+#define pos_x_initial_mc 400
 #define pos_y_initial_mc 250
     //Movement
 #define Walk_Speed_mc 8
     //Animation
-#define _Walk_Animation_Speed_mc 100
+#define _Walk_Animation_Speed_mc 500
 #define Dead_Animation_Speed_mc 150
 
 

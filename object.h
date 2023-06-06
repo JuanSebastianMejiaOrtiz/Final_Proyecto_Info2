@@ -57,6 +57,7 @@ private:
 
 private slots:
     void Launched();
+
 };
 
 #endif // OBJECT_H

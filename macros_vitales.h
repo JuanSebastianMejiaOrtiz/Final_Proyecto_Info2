@@ -11,12 +11,12 @@
 
 //Main character
     //Medidas
-#define alto_mainchar 16
-#define ancho_mainchar 16
+#define alto_mainchar 155
+#define ancho_mainchar 150
     //Animation
-#define Walk_Animation_Frame_Ammount_mc 3
-#define Idle_Animation_Frame_Ammount_mc 3
-#define Dead_Animation_Frame_Ammount_mc 7
+#define Walk_Animation_Frame_Ammount_mc 0
+#define Idle_Animation_Frame_Ammount_mc 2
+#define Dead_Animation_Frame_Ammount_mc 3
 #define number_lines_mc 2
 #define number_cols_mc 10
 

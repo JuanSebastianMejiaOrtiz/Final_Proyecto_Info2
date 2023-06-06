@@ -132,15 +132,13 @@ void Police::Move_Object(int frame_actual)
         x = 50;
         y = 20;
 
-        Cosa->SetVX(object_start_vel_x);
-        Cosa->SetVY(object_start_vel_y);
         Cosa->SetX(x);
         Cosa->SetY(y);
 
         Cosa->Move_Object(Cosa->GetX(), Cosa->GetY());
     }
     else if (frame_actual == 2){
-        Cosa->throwed(true);
         emit Para_Donde(Cosa);
+        Cosa->throwed(true);
     }
 }

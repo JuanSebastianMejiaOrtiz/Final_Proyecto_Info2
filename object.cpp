@@ -47,11 +47,6 @@ void Object::Move_Object(int x, int y)
     setPos(x, y);
 }
 
-void Object::Launch()
-{
-    setPos(x, y);
-}
-
 void Object::Calcular_Fisicas()
 {
     vx += ax * T * f;
@@ -63,7 +58,7 @@ void Object::Calcular_Fisicas()
 void Object::Launched()
 {
     Calcular_Fisicas();
-    Launch();
+    Move_Object(x, y);
 }
 
 

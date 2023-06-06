@@ -59,6 +59,8 @@ void game::Set_Background(background *background)
 void game::Set_Para_Donde(Object *Cosa)
 {
     Cosa->SetID(MC->Get_ID());
+
+
 }
 
 void game::Update_Puntaje(unsigned int puntos)

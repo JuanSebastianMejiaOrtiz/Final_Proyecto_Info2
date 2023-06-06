@@ -10,17 +10,17 @@ Brayan::Brayan() : Character(pos_x_initial_mc, pos_y_initial_mc)
     Set_Direction('n');
 
     //Obtain QPixmap full
-    QPixmap imagen("://Resources/Main_Char/MC_De_Prueba.png");
+    QPixmap imagen(":/Resources/Main_Char/Brayan_Final_Project_Full.png");
     *full = imagen.copy();
-    Set_Width_Sprite(ancho_mainchar);
-    Set_Height_Sprite(alto_mainchar);
+    Set_Width_Sprite(alto_mainchar);
+    Set_Height_Sprite(ancho_mainchar);
 
     //Animation
     Walk_Animation_Speed = _Walk_Animation_Speed_mc;
     Walk_Animation_Actual_Frame = 0;
 
     //Connect for all signals
-    //Connect and Start Timer
+        //Connect and Start Timer
     connect(timer, SIGNAL(timeout()), this, SLOT(Walk_Animation()));
         //Connect and Start Dead_Timer
     connect(&Dead_Timer, SIGNAL(timeout()), this, SLOT(Dead_Animation()));
@@ -81,7 +81,7 @@ void Brayan::Movement()
 //Animations
 void Brayan::Idle_Animation()
 {
-    if (Walk_Animation_Actual_Frame < Walk_Animation_Frame_Ammount_mc){
+    if (Walk_Animation_Actual_Frame < Idle_Animation_Frame_Ammount_mc){
         Select_sprite(Walk_Animation_Actual_Frame, 0);
         Scale_sprite(Scale_Characters);
         Show_Sprite(true);
