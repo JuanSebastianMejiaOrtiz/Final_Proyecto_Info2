@@ -25,6 +25,8 @@ public:
 
     void keyPressEvent(QKeyEvent *event);
 
+    bool is_GameOver();
+
 private:
     Brayan *MC; //Brayan, Main Character
     Police *policia; //Police, Enemy
@@ -42,24 +44,26 @@ private:
     void Set_Enemy(Police *enemy);
     void Set_Background(background *background);
 
-    //Interactions Main Character
+        //Interactions Main Character
     void Collisions_MC(Brayan *MainCharacter, Object *COSA);
     void MC_With_Limits(Brayan *mc);
     void MC_With_Object(Brayan *mc, Object *cosa, points *puntos);
-    //Interactions Enemy
+        //Interactions Enemy
     void Enemy_Action(Police *enemy, Brayan *mc);
     void Object_Stop_Moving(Police *enemy);
-    //Interacions Points
+        //Interacions Points
     void Stop_Background(background *fondo);
+        //Checking timers
+    void Checking_Timers(Brayan *mc, Police *enemy, points *puntos);
 
 private slots:
-    void Set_Para_Donde(Object *Cosa);
     void Update_Puntaje(unsigned int puntos);
-
+    void STOP();
     void Checking();
 
 signals:
     void UPDATE_POINTS(unsigned int point);
+    void Stop();
 };
 
 #endif // GAME_H

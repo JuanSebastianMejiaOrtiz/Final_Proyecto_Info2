@@ -3,13 +3,13 @@
 #define GAME_OVER_H
 
 #include "control_sprite.h"
+#include <QKeyEvent>
 
 class Game_over : public control_sprite
 {
+    Q_OBJECT
 public:
     Game_over();
-
-    void keyPressEvent(QKeyEvent *event);
 
 };
 

@@ -12,10 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     juego = new game;
 
     //Set Default Values to Attributes
-    playing = true;
-
-    //Connect All Signals
-
+    //playing = true;
+    //playing = false;
 
     START_PLAYING();
 }
@@ -24,18 +22,18 @@ MainWindow::~MainWindow()
 {
     delete ui;
 
-    delete menu_start;
-    delete menu_over;
+    //delete menu_start;
+    //delete menu_over;
     delete juego;
 }
 
 void MainWindow::START_PLAYING()
 {
     delete juego;
-
     juego = new game;
 
     //Connect all signals
+    connect(juego, SIGNAL(Stop()), this, SLOT(stop_game()));
     connect(juego, SIGNAL(UPDATE_POINTS(uint)), this, SLOT(Update_Puntaje_Label(uint)));
 
     //Set Juego
@@ -53,5 +51,17 @@ void MainWindow::Update_Puntaje_Label(unsigned int puntaje)
     qtexto += QString::number(puntaje);
 
     ui->Puntaje->setText(qtexto);
+}
+
+void MainWindow::stop_game()
+{
+    ui->Game_Over_Text->setGeometry(240, 200, 300, 150);
+}
+
+
+void MainWindow::on_Reset_clicked()
+{
+    ui->Game_Over_Text->setGeometry(240, -150, 300, 150);
+    START_PLAYING();
 }
 

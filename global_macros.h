@@ -36,10 +36,10 @@
 #define enemy_Cantidad_Cosas 2
     //Object
         //Periodo
-#define object_Periodo_de_Muestreo 10
+#define object_Periodo_de_Muestreo 10.0
         //Speed
-#define object_speed_x 12
-#define object_speed_y -10
+#define object_speed_x 30
+#define object_speed_y 10
         //Aceleration
 #define object_aceleration_x 0
 #define object_aceleration_y 0.5

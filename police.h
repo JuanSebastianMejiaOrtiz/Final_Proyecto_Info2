@@ -85,9 +85,6 @@ private slots:
 
     void Launched();
 
-signals:
-    void Para_Donde(Object *Objeto);
-
 };
 
 #endif // POLICE_H

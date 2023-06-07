@@ -21,7 +21,7 @@ Police::Police()
     ay = object_aceleration_y;
     vx = object_speed_x;
     vy = object_speed_y;
-    T = object_Periodo_de_Muestreo/1000;
+    T = object_Periodo_de_Muestreo / 1000;
     f = 10;
 
     //Load Image
@@ -116,6 +116,8 @@ void Police::Move_Object()
         X = 60;
         Y = 210;
 
+        throwed = false;
+
         SetX(X);
         SetY(Y);
         Cosa->Move_Object(X, Y);
@@ -131,28 +133,23 @@ void Police::Move_Object()
         Cosa->Move_Object(X, Y);
     }
     else if (Enemy_Animation_Actual_Frame == 3){
-        emit Para_Donde(Cosa);
+        float VX, VY;
 
-        SetVX(object_speed_x);
-        SetVY(object_speed_y);
+        VX = object_speed_x;
+
+        SetVX(VX);
+        SetVY(VY);
 
         throwed = true;
-
-        std::cout << Cosa->GetID() << " ID\n";
     }
-}
-
-void Police::Launch()
-{
-    Cosa->Move_Object(x, y);
 }
 
 void Police::Calcular_Fisicas()
 {
-    vx += ax * T * f;
-    vy += ay * T * f;
-    x += vx * T * f;
-    y += vy *T * f;
+    SetVX(GetVX() + ax * T * f);
+    SetVY(GetVY() + (ay * T * f));
+    SetX(GetX() + (vx * T * f));
+    SetY(GetY() + (vy * T * f));
 }
 
 
@@ -182,7 +179,7 @@ void Police::Launched()
 {
     if (throwed){
         Calcular_Fisicas();
-        Launch();
+        Cosa->setPos(x, y);
     }
 }
 

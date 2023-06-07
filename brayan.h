@@ -38,6 +38,9 @@ private slots:
     //Animations
     void Animations();
 
+signals:
+    void Stop_Playing();
+
 };
 
 #endif // BRAYAN_H

@@ -128,6 +128,7 @@ void Brayan::Dead(){
     else if (Dead_Actual_Frame == Dead_Animation_Frame_Ammount_mc){
         timer->stop();
         Dead_Actual_Frame = 0;
+        emit Stop_Playing();
     }
 }
 

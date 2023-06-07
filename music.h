@@ -1,16 +1,22 @@
-
 #ifndef MUSIC_H
 #define MUSIC_H
 
+#include <QMediaPlayer>
+#include <QObject>
 
-//Toca investigar como hacer lo de la musica
-
-class music
+class music : public QObject
 {
+    Q_OBJECT
+
 public:
     music();
+    ~music();
 
-    //Metodos que permitan reproducir una cancion a voluntad y controlarla
+private slots:
+    void handleMediaStatusChanged(QMediaPlayer::MediaStatus status);
+
+private:
+    QMediaPlayer *musica;
 };
 
 #endif // MUSIC_H

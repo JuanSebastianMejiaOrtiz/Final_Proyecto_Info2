@@ -36,10 +36,15 @@ private:
     game *juego;
 
     void START_PLAYING();
+    void Game_Over_Screen();
+
+    QTimer *Check_Playing;
 
 private slots:
     void Update_Puntaje_Label(unsigned int puntaje);
+    void stop_game();
 
+    void on_Reset_clicked();
 };
 
 #endif // MAINWINDOW_H

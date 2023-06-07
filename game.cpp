@@ -9,6 +9,7 @@ game::game()
     fondo = new background;
     puntaje = new points;
     Check_Update = new QTimer;
+    musica = new music;
 
     //Set on Scene
     Set_Background(fondo);
@@ -16,9 +17,9 @@ game::game()
     Set_Enemy(policia);
 
     //Connect Signals
-    connect(policia, SIGNAL(Para_Donde(Object*)), this, SLOT(Set_Para_Donde(Object*)));
     connect(puntaje, SIGNAL(Update_Points(uint)), this, SLOT(Update_Puntaje(uint)));
     connect(Check_Update, SIGNAL(timeout()), this, SLOT(Checking()));
+    connect(MC, SIGNAL(Stop_Playing()), this, SLOT(STOP()));
 
     Check_Update->start(Check);
 }
@@ -30,13 +31,28 @@ game::~game()
     delete puntaje;
     delete fondo;
     delete musica;
-    delete initial_cinematic;
     delete Check_Update;
+    delete initial_cinematic;
 }
 
 void game::keyPressEvent(QKeyEvent *event)
 {
     MC->keyPressEvent(event);
+}
+
+bool game::is_GameOver()
+{
+    bool mcVivo, mcDeadFull;
+
+    mcVivo = MC->Get_isAlive();
+    mcDeadFull = MC->timer->isActive();
+
+    if (!mcVivo){
+        if (!mcDeadFull){
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void game::Set_MC(Brayan *mc)
@@ -89,13 +105,12 @@ void game::MC_With_Limits(Brayan *mc)
 
 void game::MC_With_Object(Brayan *mc, Object *cosa, points *puntos)
 {
-    short idmc = mc->Get_ID();
-    short idcosa = cosa->GetID();
-    if (mc->collidesWithItem(cosa) && (idmc == idcosa)){
+    if (mc->collidesWithItem(cosa)){
         mc->timer->start(Dead_Animation_Speed_mc);
         mc->Set_isAlive(false);
 
         puntos->Stop_Timers();
+        Stop_Background(fondo);
     }
 }
 
@@ -125,14 +140,14 @@ void game::Stop_Background(background *fondo)
     fondo->moving(false);
 }
 
-void game::Set_Para_Donde(Object *Cosa)
-{
-    Cosa->SetID(MC->Get_ID());
-}
-
 void game::Update_Puntaje(unsigned int puntos)
 {
     emit UPDATE_POINTS(puntos);
+}
+
+void game::STOP()
+{
+    emit Stop();
 }
 
 void game::Checking()

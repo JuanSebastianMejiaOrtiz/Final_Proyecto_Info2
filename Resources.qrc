@@ -5,5 +5,6 @@
         <file>Resources/Enemy/Sprite_Police_Full.png</file>
         <file>Resources/Game_Over/Game_Over.png</file>
         <file>Resources/Main_Char/Brayan_Final_Project_Full.png</file>
+        <file>Resources/Music/Cancion_Juego_Proyecto_Final.wav</file>
     </qresource>
 </RCC>
