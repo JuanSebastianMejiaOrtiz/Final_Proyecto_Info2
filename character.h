@@ -33,6 +33,9 @@ public:
     void Set_ID(short nID);
     short Get_ID();
 
+    //Timer Animations
+    QTimer *timer;
+
 protected:
     //Position Variables
     int *Pos_x; //Character position in x
@@ -50,12 +53,6 @@ protected:
     short Walk_Animation_Actual_Frame;
         //Dead_Animation
     int Dead_Actual_Frame;
-
-    //Timers Animations
-        //Walk
-    QTimer *timer;
-        //Dead
-    QTimer Dead_Timer;
 
 };
 

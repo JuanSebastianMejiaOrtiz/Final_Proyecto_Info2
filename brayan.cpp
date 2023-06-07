@@ -8,6 +8,7 @@ Brayan::Brayan() : Character(pos_x_initial_mc, pos_y_initial_mc)
     //Set Default Values
     Dead_Actual_Frame = 0;
     Set_Direction('n');
+    Set_ID(0);
 
     //Obtain QPixmap full
     QPixmap imagen(":/Resources/Main_Char/Brayan_Final_Project_Full.png");
@@ -21,15 +22,11 @@ Brayan::Brayan() : Character(pos_x_initial_mc, pos_y_initial_mc)
 
     //Connect for all signals
         //Connect and Start Timer
-    connect(timer, SIGNAL(timeout()), this, SLOT(Walk_Animation()));
-        //Connect and Start Dead_Timer
-    connect(&Dead_Timer, SIGNAL(timeout()), this, SLOT(Dead_Animation()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(Animations()));
 
     //Start timers
-        //Walk Animation
+        //Animations
     timer->start(Walk_Animation_Speed);
-        //Dead Animation
-    Dead_Timer.start(Dead_Animation_Speed_mc);
 }
 
 Brayan::~Brayan()
@@ -57,11 +54,9 @@ void Brayan::keyPressEvent(QKeyEvent *event)
 //Movement
 void Brayan::Move()
 {
-    if (Get_isAlive()){
-        Movement();
+    Movement();
 
-        Walk_Animation();
-    }
+    Walk_Animation();
 }
 
 //Change Position
@@ -131,7 +126,7 @@ void Brayan::Dead(){
         Dead_Actual_Frame++;
     }
     else if (Dead_Actual_Frame == Dead_Animation_Frame_Ammount_mc){
-        Dead_Timer.stop();
+        timer->stop();
         Dead_Actual_Frame = 0;
     }
 }
@@ -158,7 +153,14 @@ void Brayan::Walk_Animation()
     //Dead
 void Brayan::Dead_Animation()
 {
-    if (!Get_isAlive()){
-        Dead();
+    Dead();
+}
+
+void Brayan::Animations(){
+    if (Get_isAlive()){
+        Walk_Animation();
+    }
+    else{
+        Dead_Animation();
     }
 }

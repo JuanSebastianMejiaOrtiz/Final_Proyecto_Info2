@@ -10,13 +10,13 @@ Object::Object()
     x = 0;
     y = 0;
 
-    vx = object_start_vel_x;
-    vy = object_start_vel_y;
+    vx = 0;
+    vy = 0;
 
     ax = object_aceleration_x;
     ay = object_aceleration_y;
 
-    T = object_Periodo_de_Muestreo;
+    T = object_Periodo_de_Muestreo / 1000;
     f = 1;
 
     //Connect timer
@@ -24,22 +24,13 @@ Object::Object()
 
     //Set Pixmap
     QPixmap img;
-    img.load("://Resources/Objetos/roca.png");
+    img.load(":/Resources/Objetos/roca.png");
     *full = img.copy();
-    setPos(0, 0);
     Select_sprite(0, 0);
     Scale_sprite(Scale_Objects);
     Show_Sprite(true);
-}
 
-void Object::throwed(bool launched)
-{
-    if (launched){
-        timer->start(T);
-    }
-    else{
-        timer->stop();
-    }
+    timer->start(object_Periodo_de_Muestreo);
 }
 
 void Object::Move_Object(int x, int y)

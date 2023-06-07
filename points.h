@@ -15,6 +15,9 @@ public:
     unsigned int Get_Points();
     void Add_Points(unsigned int points);
     void Reset_Points();
+
+    void Stop_Timers();
+
 private:
     QTimer *timer_points;
     QTimer *extra_points;

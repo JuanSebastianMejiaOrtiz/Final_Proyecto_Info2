@@ -23,7 +23,11 @@ private:
     void Movement();
 
     //Animation Methods
-    //Movement
+        //Movement Animation
+    void Walk_Animation();
+        //Dead Animation
+    void Dead_Animation();
+        //Movement
     void Idle_Animation();
     void Walk_Up_Animation();
     void Walk_Down_Animation();
@@ -32,10 +36,7 @@ private:
 
 private slots:
     //Animations
-    //Movement Animation
-    void Walk_Animation();
-        //Dead Animation
-    void Dead_Animation();
+    void Animations();
 
 };
 

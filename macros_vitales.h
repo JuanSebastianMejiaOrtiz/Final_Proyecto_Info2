@@ -39,5 +39,19 @@
 //Background
 #define background_width 3790
 #define background_height 194
+#define background_reset_x ((background_width * Scale_Background_x) - (267 * Scale_Background_x))
+
+
+//Puntaje
+    //Medidas
+#define puntos_alto_Label 50
+#define puntos_ancho_Label 230
+    //Position
+        //Playing
+#define puntos_pos_playing_x 10
+#define puntos_pos_playing_y 10
+        //Other Screens
+#define puntos_pos_GameOver_x 10
+#define puntos_pos_GameOver_y 10
 
 #endif // MACROS_VITALES_H

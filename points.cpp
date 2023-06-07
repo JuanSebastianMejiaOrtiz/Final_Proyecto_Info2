@@ -41,6 +41,12 @@ void points::Reset_Points()
     *puntos = 0;
 }
 
+void points::Stop_Timers()
+{
+    timer_points->stop();
+    extra_points->stop();
+}
+
 void points::Sumar_Puntaje()
 {
     unsigned int p = 1;

@@ -18,20 +18,22 @@ public:
     void Stop_Animation();
 
     int Get_Enemy_Animation_Actual_Frame();
+    void Reset_Enemy_Animation_Actual_Frame();
     bool is_Launched();
 
-    //Object *Cosas[enemy_Cantidad_Cosas];
     Object *Cosa;
+
+    //Timers
+        //Animation
+            //Throw
+    QTimer *Throw_timer;
+            //Idle
+    QTimer *timer;
+            //Stop
+    QTimer *end_timer;
 
 protected:
     bool launch;
-
-    //Timers
-        //Throw
-    QTimer *Throw_timer;
-        //Animation
-    QTimer *timer;
-    QTimer *end_timer;
 
 private:
     int Enemy_Animation_Actual_Frame;

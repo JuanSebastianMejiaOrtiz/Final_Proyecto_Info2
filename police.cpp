@@ -46,7 +46,8 @@ Police::~Police()
 void Police::Throw_Animation()
 {
     if (Get_Enemy_Animation_Actual_Frame() < enemy_Throw_Animation_Frame_Ammount){
-        int frame = Enemy_Animation_Actual_Frame + enemy_Idle_Animation_Frame_Ammount;
+        int frame;
+        frame = Enemy_Animation_Actual_Frame + enemy_Idle_Animation_Frame_Ammount;
         Select_sprite(frame, 0);
         Scale_sprite(Scale_Characters);
         Show_Sprite(true);
@@ -78,7 +79,8 @@ void Police::Idle_Animation()
 void Police::Stop_Animation()
 {
     if (Get_Enemy_Animation_Actual_Frame() < enemy_Stop_Animation_Frame_Ammount){
-        Select_sprite(Enemy_Animation_Actual_Frame, 1);
+        int frame = Enemy_Animation_Actual_Frame;
+        Select_sprite(frame, 1);
         Scale_sprite(Scale_Characters);
         Show_Sprite(true);
         Enemy_Animation_Actual_Frame++;
@@ -89,6 +91,8 @@ void Police::Stop_Animation()
     }
 }
 
+
+//SLOTS
 void Police::Animation_Idle()
 {
     if (!is_Launched()){
@@ -115,6 +119,11 @@ int Police::Get_Enemy_Animation_Actual_Frame()
     return Enemy_Animation_Actual_Frame;
 }
 
+void Police::Reset_Enemy_Animation_Actual_Frame()
+{
+    Enemy_Animation_Actual_Frame = 0;
+}
+
 bool Police::is_Launched()
 {
     return launch;
@@ -124,13 +133,17 @@ void Police::Move_Object(int frame_actual)
 {
     float x, y;
     if (frame_actual == 0){
-        x = 10;
-        y = 40;
+        x = 60;
+        y = 215;
+
+        Cosa->SetX(x);
+        Cosa->SetY(y);
+
         Cosa->Move_Object(x, y);
     }
     else if (frame_actual == 1){
-        x = 50;
-        y = 20;
+        x = 85;
+        y = 202;
 
         Cosa->SetX(x);
         Cosa->SetY(y);
@@ -139,6 +152,5 @@ void Police::Move_Object(int frame_actual)
     }
     else if (frame_actual == 2){
         emit Para_Donde(Cosa);
-        Cosa->throwed(true);
     }
 }

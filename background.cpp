@@ -62,8 +62,6 @@ void background::Start_moving()
 void background::Stop_moving()
 {
     time->stop();
-    actual_x = 0;
-    actual_y = 0;
 }
 
 void background::Move_Background()
