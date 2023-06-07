@@ -6,6 +6,8 @@
 #include "object.h"
 #include "global_macros.h"
 
+#include <iostream>
+
 class Police : public control_sprite
 {
     Q_OBJECT
@@ -19,9 +21,30 @@ public:
 
     int Get_Enemy_Animation_Actual_Frame();
     void Reset_Enemy_Animation_Actual_Frame();
+
     bool is_Launched();
 
+    void SetX(float X);
+    float GetX();
+
+    void SetY(float Y);
+    float GetY();
+
+    void SetVX(float VX);
+    float GetVX();
+
+    void SetVY(float VY);
+    float GetVY();
+
+    void SetAX(float AX);
+    float GetAX();
+
+    void SetAY(float AY);
+    float GetAY();
+
     Object *Cosa;
+
+    bool throwed;
 
     //Timers
         //Animation
@@ -35,6 +58,15 @@ public:
 protected:
     bool launch;
 
+    float x, y;
+    float vx, vy;
+    float ax, ay;
+    float T;
+    float f;
+
+    void Launch();
+    void Calcular_Fisicas();
+
 private:
     int Enemy_Animation_Actual_Frame;
 
@@ -42,12 +74,16 @@ private:
     int Enemy_Throw_Frecuency;
     int Enemy_Throw_Animation_Speed;
 
-    void Move_Object(int frame_actual);
+    QTimer *cosa_timer;
+
+    void Move_Object();
 
 private slots:
     void Animation_Idle();
     void Game_Over_Stop();
     void Throwing();
+
+    void Launched();
 
 signals:
     void Para_Donde(Object *Objeto);

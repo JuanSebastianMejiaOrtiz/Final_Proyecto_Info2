@@ -8,6 +8,7 @@ Police::Police()
     end_timer = new QTimer;
     Throw_timer = new QTimer;
     Cosa = new Object;
+    cosa_timer = new QTimer;
 
     //Set Default Values
     launch = false;
@@ -15,6 +16,13 @@ Police::Police()
     Enemy_Throw_Frecuency = enemy_Throw_Frecuency;
     Enemy_Throw_Animation_Speed = enemy_Throw_Animation_Speed;
     Enemy_Walk_Animation_Speed = enemy_Walk_Animation_Speed;
+        //Fisicas
+    ax = object_aceleration_x;
+    ay = object_aceleration_y;
+    vx = object_speed_x;
+    vy = object_speed_y;
+    T = object_Periodo_de_Muestreo/1000;
+    f = 10;
 
     //Load Image
     QPixmap img(":/Resources/Enemy/Sprite_Police_Full.png");
@@ -22,11 +30,16 @@ Police::Police()
     Set_Width_Sprite(enemy_ancho);
     Set_Height_Sprite(enemy_alto);
 
-    //Connect for all signals
+    //Connect for All Signals
         //timer for animations
+            //Idle Animation
     connect(timer, SIGNAL(timeout()), this, SLOT(Animation_Idle()));
+            //Throw Animation
     connect(Throw_timer, SIGNAL(timeout()), this, SLOT(Throwing()));
+            //Stop Animation
     connect(end_timer, SIGNAL(timeout()), this, SLOT(Game_Over_Stop()));
+            //Object Move
+    connect(cosa_timer, SIGNAL(timeout()), this, SLOT(Launched()));
 
     //Set Pos
     setPos(enemy_pos_x_initial, enemy_pos_y_initial);
@@ -35,12 +48,16 @@ Police::Police()
     //Start timers
     timer->start(Enemy_Walk_Animation_Speed);
     Throw_timer->start(Enemy_Throw_Frecuency);
+    cosa_timer->start(object_Periodo_de_Muestreo);
 }
 
 Police::~Police()
 {
     delete timer;
     delete Cosa;
+    delete end_timer;
+    delete cosa_timer;
+    delete Throw_timer;
 }
 
 void Police::Throw_Animation()
@@ -52,9 +69,9 @@ void Police::Throw_Animation()
         Scale_sprite(Scale_Characters);
         Show_Sprite(true);
 
-        Move_Object(Get_Enemy_Animation_Actual_Frame());
-
         Enemy_Animation_Actual_Frame++;
+
+        Move_Object();
     }
     else{
         Enemy_Animation_Actual_Frame = 0;
@@ -91,6 +108,54 @@ void Police::Stop_Animation()
     }
 }
 
+void Police::Move_Object()
+{
+    if (Enemy_Animation_Actual_Frame == 1){
+        int X, Y;
+
+        X = 60;
+        Y = 210;
+
+        SetX(X);
+        SetY(Y);
+        Cosa->Move_Object(X, Y);
+    }
+    else if (Enemy_Animation_Actual_Frame == 2){
+        int X, Y;
+
+        X = 85;
+        Y = 202;
+
+        SetX(X);
+        SetY(Y);
+        Cosa->Move_Object(X, Y);
+    }
+    else if (Enemy_Animation_Actual_Frame == 3){
+        emit Para_Donde(Cosa);
+
+        SetVX(object_speed_x);
+        SetVY(object_speed_y);
+
+        throwed = true;
+
+        std::cout << Cosa->GetID() << " ID\n";
+    }
+}
+
+void Police::Launch()
+{
+    Cosa->Move_Object(x, y);
+}
+
+void Police::Calcular_Fisicas()
+{
+    vx += ax * T * f;
+    vy += ay * T * f;
+    x += vx * T * f;
+    y += vy *T * f;
+}
+
+
 
 //SLOTS
 void Police::Animation_Idle()
@@ -108,10 +173,19 @@ void Police::Game_Over_Stop()
 
 void Police::Throwing()
 {
-    launch = !launch;
+    launch = true;
     Enemy_Animation_Actual_Frame = 0;
     timer->start(Enemy_Throw_Animation_Speed);
 }
+
+void Police::Launched()
+{
+    if (throwed){
+        Calcular_Fisicas();
+        Launch();
+    }
+}
+
 
 //Set and Get Methods
 int Police::Get_Enemy_Animation_Actual_Frame()
@@ -129,28 +203,66 @@ bool Police::is_Launched()
     return launch;
 }
 
-void Police::Move_Object(int frame_actual)
+void Police::SetX(float X)
 {
-    float x, y;
-    if (frame_actual == 0){
-        x = 60;
-        y = 215;
-
-        Cosa->SetX(x);
-        Cosa->SetY(y);
-
-        Cosa->Move_Object(x, y);
-    }
-    else if (frame_actual == 1){
-        x = 85;
-        y = 202;
-
-        Cosa->SetX(x);
-        Cosa->SetY(y);
-
-        Cosa->Move_Object(Cosa->GetX(), Cosa->GetY());
-    }
-    else if (frame_actual == 2){
-        emit Para_Donde(Cosa);
-    }
+    x = X;
 }
+
+float Police::GetX()
+{
+    return x;
+}
+
+void Police::SetY(float Y)
+{
+    y = Y;
+}
+
+float Police::GetY()
+{
+    return y;
+}
+
+void Police::SetVX(float VX)
+{
+    vx = VX;
+}
+
+float Police::GetVX()
+{
+    return vx;
+}
+
+void Police::SetVY(float VY)
+{
+    vy = VY;
+}
+
+float Police::GetVY()
+{
+    return vy;
+}
+
+void Police::SetAX(float AX)
+{
+    ax = AX;
+}
+
+float Police::GetAX()
+{
+    return ax;
+}
+
+void Police::SetAY(float AY)
+{
+    ay = AY;
+}
+
+float Police::GetAY()
+{
+    return ay;
+}
+
+
+
+

@@ -48,7 +48,7 @@ private:
     void MC_With_Object(Brayan *mc, Object *cosa, points *puntos);
     //Interactions Enemy
     void Enemy_Action(Police *enemy, Brayan *mc);
-    void Object_timer_stop(Object *cosa);
+    void Object_Stop_Moving(Police *enemy);
     //Interacions Points
     void Stop_Background(background *fondo);
 

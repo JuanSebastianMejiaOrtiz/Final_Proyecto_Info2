@@ -110,13 +110,13 @@ void game::Enemy_Action(Police *enemy, Brayan *mc)
     }
 }
 
-void game::Object_timer_stop(Object *cosa)
+void game::Object_Stop_Moving(Police *enemy)
 {
-    int x = cosa->GetX();
-    int y = cosa->GetY();
-    if (x > Window_Width || y > Window_Height){
-        cosa->SetVX(0);
-        cosa->SetVY(0);
+    int X, Y;
+    X = enemy->GetX();
+    Y = enemy->GetY();
+    if (X > Window_Width || Y > Window_Height){
+        enemy->throwed = false;
     }
 }
 
@@ -127,62 +127,7 @@ void game::Stop_Background(background *fondo)
 
 void game::Set_Para_Donde(Object *Cosa)
 {
-    float vx, vy;
     Cosa->SetID(MC->Get_ID());
-
-    //int idCosa;
-    //idCosa = Cosa->GetID();
-
-    vx = 4;
-    vy = 8;
-    vy *= -1;
-
-    Cosa->SetVY(vy);
-    Cosa->SetVX(vx);
-
-//    if (idCosa == 0){
-//        vx = 4;
-//        vy = 8;
-//        vy *= -1;
-
-//        Cosa->SetVY(vy);
-//        Cosa->SetVX(vx);
-//    }
-//    else if (idCosa == 1){
-//        vx = 20;
-//        vy = -30;
-
-//        Cosa->SetVY(vy);
-//        Cosa->SetVX(vx);
-//    }
-//    else if (idCosa == 2){
-//        vx = 20;
-//        vy = -30;
-
-//        Cosa->SetVY(vy);
-//        Cosa->SetVX(vx);
-//    }
-//    else if (idCosa == 3){
-//        vx = 20;
-//        vy = -30;
-
-//        Cosa->SetVY(vy);
-//        Cosa->SetVX(vx);
-//    }
-//    else if (idCosa == 4){
-//        vx = 20;
-//        vy = -30;
-
-//        Cosa->SetVY(vy);
-//        Cosa->SetVX(vx);
-//    }
-//    else if (idCosa == 5){
-//        vx = 12;
-//        vy = -20;
-
-//        Cosa->SetVY(vy);
-//        Cosa->SetVX(vx);
-//    }
 }
 
 void game::Update_Puntaje(unsigned int puntos)
@@ -194,5 +139,5 @@ void game::Checking()
 {
     Collisions_MC(MC, policia->Cosa);
     Enemy_Action(policia, MC);
-    Object_timer_stop(policia->Cosa);
+    Object_Stop_Moving(policia);
 }
