@@ -133,9 +133,12 @@ void Police::Move_Object()
         Cosa->Move_Object(X, Y);
     }
     else if (Enemy_Animation_Actual_Frame == 3){
+        std::srand((unsigned) std::time(NULL));
         float VX, VY;
 
         VX = object_speed_x;
+        VY = 0 + std::rand() % 20;
+        VY *= -1;
 
         SetVX(VX);
         SetVY(VY);

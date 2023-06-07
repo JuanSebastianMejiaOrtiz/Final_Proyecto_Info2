@@ -4,6 +4,8 @@
 
 #include "control_sprite.h"
 #include "object.h"
+#include <cstdlib>
+#include <ctime>
 #include "global_macros.h"
 
 #include <iostream>
