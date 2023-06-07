@@ -32,7 +32,7 @@ game::~game()
     delete fondo;
     delete musica;
     delete Check_Update;
-    delete initial_cinematic;
+    //delete initial_cinematic;
 }
 
 void game::keyPressEvent(QKeyEvent *event)
